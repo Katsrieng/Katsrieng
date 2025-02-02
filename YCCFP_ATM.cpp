@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 using namespace std;
 
 double checkbalance(double Balance[], int userIndex);
@@ -87,14 +88,25 @@ int main()
             case 2:
             {
                 double amount = withdraw(Balance, userIndex);
-                transactions.push_back("Withdraw: $" + to_string(amount));
+                if (amount > 0)
+    {
+                // Format to 2 decimal places
+                ostringstream stream;
+                stream << fixed << setprecision(2) << amount;
+                transactions.push_back("Withdraw: $" + stream.str());
+    }
                 break;
             }
             case 3:
             {
                 double amount = deposit(Balance, userIndex);
-                 transactions.push_back("Deposit: $" + to_string(amount));
-                break;
+                if (amount > 0)
+    {
+                // Format to 2 decimal places
+                ostringstream stream;
+                stream << fixed << setprecision(2) << amount;
+                transactions.push_back("Deposit: $" + stream.str());
+    }
             }
             case 4:
                 Receipt(Name[userIndex], transactions, Balance[userIndex]);
@@ -163,7 +175,7 @@ void Receipt(string name, vector<string> transactions, double finalBalance) {
     if (transactions.empty()) {
         cout << "No transaction was made.\n";
     } else {
-        for (const string& t : transactions) {
+        for (string t : transactions) {
             cout << t << endl;
         }
     }
