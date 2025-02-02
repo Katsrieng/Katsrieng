@@ -14,7 +14,6 @@ int main()
     int pw[] = {3123, 7035, 9086 , 9999};
     double Balance[] = {1000, 2500, 4000, 10000};
     int userIndex = -1;
-    int totalSeconds = 2;
     vector<string> transactions; // Store transaction history
 
     string account;
@@ -76,7 +75,7 @@ int main()
         cout << "2. Withdraw" << endl;
         cout << "3. Deposit Money" << endl;
         cout << "4. Exit" << endl;
-        cout << "Please enter your choice: ";
+        cout << "Please enter your choice(Only Number): ";
         cin >> n;
         cout << "=============================================================" << endl;
 
@@ -88,25 +87,25 @@ int main()
             case 2:
             {
                 double amount = withdraw(Balance, userIndex);
-                if (amount > 0)
-    {
+            
                 // Format to 2 decimal places
                 ostringstream stream;
                 stream << fixed << setprecision(2) << amount;
                 transactions.push_back("Withdraw: $" + stream.str());
-    }
+    
                 break;
             }
             case 3:
             {
                 double amount = deposit(Balance, userIndex);
-                if (amount > 0)
-    {
+                
+    
                 // Format to 2 decimal places
                 ostringstream stream;
                 stream << fixed << setprecision(2) << amount;
                 transactions.push_back("Deposit: $" + stream.str());
-    }
+                break;
+    
             }
             case 4:
                 Receipt(Name[userIndex], transactions, Balance[userIndex]);
